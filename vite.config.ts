@@ -1,8 +1,8 @@
-import react from "@vitejs/plugin-react"
-import * as path from "node:path"
-import { defineConfig } from "vitest/config"
-import packageJson from "./package.json" with { type: "json" }
-import tailwindcss from "@tailwindcss/vite"
+import react from '@vitejs/plugin-react';
+import * as path from 'node:path';
+import { defineConfig } from 'vitest/config';
+import packageJson from './package.json' with { type: 'json' };
+import tailwindcss from '@tailwindcss/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,26 +10,27 @@ export default defineConfig({
 
   server: {
     open: true,
+    port: 3240,
   },
 
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      '@': path.resolve(__dirname, 'src'),
     },
   },
 
   test: {
     root: import.meta.dirname,
     name: packageJson.name,
-    environment: "jsdom",
+    environment: 'jsdom',
 
     typecheck: {
       enabled: true,
-      tsconfig: path.join(import.meta.dirname, "tsconfig.json"),
+      tsconfig: path.join(import.meta.dirname, 'tsconfig.json'),
     },
 
     globals: true,
     watch: false,
-    setupFiles: ["./src/setupTests.ts"],
+    setupFiles: ['./src/setupTests.ts'],
   },
-})
+});

@@ -1,5 +1,10 @@
 import { Layout } from '@/components/Layout';
+import { AppRoutesProvider } from '../AppRoutesProvider';
 
 export const AppLayout = () => {
-  return <Layout>Pages Go Here</Layout>;
+  return (
+    <Layout>
+      <AppRoutesProvider />
+    </Layout>
+  );
 };
