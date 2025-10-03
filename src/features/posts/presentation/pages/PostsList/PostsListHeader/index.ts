@@ -1,0 +1,1 @@
+export { PostsListHeader } from './PostsListHeader';
