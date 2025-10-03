@@ -15,15 +15,24 @@ export type PostsRequestQueryParams = {
   searchKeyword?: string;
 };
 
-// * Get Authors List Api Interfaces
-export type AuthorsRequestResult = Author[];
-
 // * Get Post Details Api Interfaces
 export type PostDetailsRequestResult = Post;
 
 export type PostDetailsRequestQueryParams = {
   id: string;
 };
+
+// * Add Post Api Interfaces
+export type AddPostRequestResult = Post;
+
+export type AddPostRequestPayload = {
+  title: string;
+  body: string;
+  userId: string;
+};
+
+// * Get Authors List Api Interfaces
+export type AuthorsRequestResult = Author[];
 
 // * Get Author Details Api Interfaces
 export type AuthorDetailsRequestResult = Author;

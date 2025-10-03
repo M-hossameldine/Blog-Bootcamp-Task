@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/sonner';
 import { LayoutHeader } from './LayoutHeader';
 
 import Background from '@/assets/images/EverestBackground.jpg';
@@ -17,6 +18,8 @@ export const Layout = ({ children }: LayoutProps) => {
 
         <div className="h-full mt-4 overflow-y-auto">{children}</div>
       </div>
+
+      <Toaster position="bottom-right" />
     </div>
   );
 };

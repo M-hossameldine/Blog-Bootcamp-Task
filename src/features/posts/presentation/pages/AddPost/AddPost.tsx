@@ -1,8 +1,14 @@
 /* eslint-disable */
 
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+
+import {
+  useAddPostMutation,
+  useGetAuthorsQuery,
+} from '@/features/posts/data/remote/PostsApis';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -23,8 +29,9 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { toast } from 'sonner';
 
-import { NotebookPen, AlertCircle } from 'lucide-react';
+import { NotebookPen, AlertCircle, Check } from 'lucide-react';
 
 const formSchema = z.object({
   title: z.string().min(1, 'Post title is required').trim(),
@@ -34,7 +41,11 @@ const formSchema = z.object({
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
-export function AddPost() {
+export const AddPost = () => {
+  const [addPost] = useAddPostMutation();
+  const { data: authors } = useGetAuthorsQuery(undefined);
+  const [hasError, setHasError] = useState(false);
+
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,9 +55,26 @@ export function AddPost() {
     } satisfies FormSchemaType,
   });
 
-  function onSubmit(values: FormSchemaType) {
-    // send data to the API
-  }
+  const onSubmit = async (values: FormSchemaType) => {
+    setHasError(false);
+
+    const result = await addPost({
+      title: values.title,
+      body: values.body,
+      userId: values.author,
+    });
+
+    if (result && !result.error) {
+      toast(
+        <p className="flex items-center gap-2.5">
+          <Check className="size-4 text-green-600" /> A new post has been
+          successfully created!
+        </p>
+      );
+    } else {
+      setHasError(true);
+    }
+  };
 
   return (
     <Card className="bg-white/60 backdrop-blur-lg p-0 gap-0 text-start overflow-hidden">
@@ -126,9 +154,14 @@ export function AddPost() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="1">Leanne Graham</SelectItem>
-                          <SelectItem value="2">Ervin Howell</SelectItem>
-                          <SelectItem value="3">Clementine Bauch</SelectItem>
+                          {authors?.map(author => (
+                            <SelectItem
+                              key={author.id}
+                              value={author.id.toString()}
+                            >
+                              {author.name}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                       {form.formState.errors.author && (
@@ -142,6 +175,12 @@ export function AddPost() {
                 />
               </div>
 
+              {hasError && (
+                <div className="flex items-center justify-center gap-1 px-2.5 py-4 text-destructive text-sm border rounded-sm text-center border-[#D00000] bg-[#FFEEEE]">
+                  <AlertCircle className="size-4" />
+                  <p> Internal Server Error</p>
+                </div>
+              )}
               {/* Submit */}
               <Button
                 type="submit"
@@ -155,6 +194,6 @@ export function AddPost() {
       </CardContent>
     </Card>
   );
-}
+};
 
 export default AddPost;

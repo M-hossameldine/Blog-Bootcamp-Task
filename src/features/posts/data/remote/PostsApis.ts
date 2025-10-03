@@ -3,9 +3,11 @@ import type {
   PostsRequestResult,
   PostsRequestQueryParams,
   PostsRequestResponse,
-  AuthorsRequestResult,
   PostDetailsRequestResult,
   PostDetailsRequestQueryParams,
+  AddPostRequestResult,
+  AddPostRequestPayload,
+  AuthorsRequestResult,
   AuthorDetailsRequestResult,
   AuthorDetailsRequestQueryParams,
 } from './PostApis.interfaces';
@@ -31,6 +33,7 @@ export const PostsApis = appApi.injectEndpoints({
         };
       },
     }),
+
     getPostDetails: builder.query<
       PostDetailsRequestResult,
       PostDetailsRequestQueryParams
@@ -40,6 +43,15 @@ export const PostsApis = appApi.injectEndpoints({
     getAuthors: builder.query<AuthorsRequestResult, undefined>({
       query: () => `/users`,
     }),
+
+    addPost: builder.mutation<AddPostRequestResult, AddPostRequestPayload>({
+      query: (payload: AddPostRequestPayload) => ({
+        url: '/posts',
+        method: 'POST',
+        body: payload,
+      }),
+    }),
+
     getAuthorDetails: builder.query<
       AuthorDetailsRequestResult,
       AuthorDetailsRequestQueryParams
@@ -53,6 +65,7 @@ export const {
   useLazyGetPostsQuery,
   useGetAuthorsQuery,
   useGetPostDetailsQuery,
+  useAddPostMutation,
   useLazyGetAuthorDetailsQuery,
   useGetAuthorDetailsQuery,
 } = PostsApis;
