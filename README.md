@@ -1,27 +1,76 @@
-# vite-template-redux
+# Blog Task Project
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
+## What is the project about
 
-```sh
-npx tiged reduxjs/redux-templates/packages/vite-template-redux my-app
+This is a modern React blog application built with Redux Toolkit Query (RTK Query) for data fetching and management. The project features:
+
+- **Posts Management**: View, create, and browse blog posts with pagination
+- **Author Filtering**: Filter posts by different authors
+- **Search Functionality**: Search through posts by keywords
+- **Post Details**: Detailed views for individual posts with author information
+- **Responsive UI**: Built with Tailwind CSS and shadcn/ui components
+- **Form Handling**: Complete form management with React Hook Form and Zod validation
+
+## How to install dependencies
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd Blog-Task
+
+# Install all dependencies
+npm install
 ```
 
-## Goals
+## How to run the project locally
 
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
+```bash
+# Start the development server
+npm start
+# or
+npm run dev
 
-## Scripts
+# The application will be available at http://localhost:3240
+```
 
-- `dev`/`start` - start dev server and open browser
-- `build` - build for production
-- `preview` - locally preview production build
-- `test` - launch test runner
+### Additional Scripts
 
-## Inspiration
+```bash
+# Build for production
+npm run build
 
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+# Preview production build locally
+npm run preview
+
+# Run tests
+npm test
+```
+
+## Additional Notes or Improvements
+
+### Technology Stack
+
+- **React 18** with TypeScript
+- **Vite** for fast development and building
+- **Redux Toolkit Query** for efficient data fetching
+- **React Router** for navigation
+- **React Hook Form** with **Zod** for form validation
+- **Tailwind CSS** for styling
+- **shadcn/ui** for consistent UI components
+- **Lucide React** for icons
+- **Dayjs** for date formatting
+
+### Key Features Implemented
+
+- ✅ Dynamic pagination with smart page number display
+- ✅ Real-time search and filtering
+- ✅ Author selection dropdown
+- ✅ Responsive design with modern UI
+- ✅ Type-safe form handling
+
+### Future Improvements
+
+- Add user authentication system
+- Implement comment system for posts
+- Add rich text editor for post creation
+- Add image upload functionality
