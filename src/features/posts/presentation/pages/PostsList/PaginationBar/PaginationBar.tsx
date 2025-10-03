@@ -4,12 +4,15 @@ import {
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
 } from '@/components/ui/pagination';
 import { CardFooter } from '@/components/ui/card';
 
-import { ChevronsLeft, ChevronsRight } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronsLeft,
+  ChevronRight,
+  ChevronsRight,
+} from 'lucide-react';
 
 type PaginationBarProps = {
   currentPage: number;
@@ -131,14 +134,17 @@ export const PaginationBar = ({
           </PaginationItem>
 
           <PaginationItem>
-            <PaginationPrevious
+            <PaginationLink
               onClick={handlePrevious}
+              aria-label="Go to previous page"
               className={`rounded-full border border-[#F1F1F1] w-9 ${
                 currentPage <= 1
                   ? 'pointer-events-none text-black/50'
                   : 'cursor-pointer'
               }`}
-            />
+            >
+              <ChevronLeft />
+            </PaginationLink>
           </PaginationItem>
 
           {pageNumbers.map((page, index) => (
@@ -160,14 +166,17 @@ export const PaginationBar = ({
           ))}
 
           <PaginationItem>
-            <PaginationNext
+            <PaginationLink
               onClick={handleNext}
+              aria-label="Go to next page"
               className={`w-9 rounded-full border border-[#F1F1F1] ${
                 currentPage >= totalPages
                   ? 'pointer-events-none text-black/50'
                   : 'cursor-pointer rounded-full'
               }`}
-            />
+            >
+              <ChevronRight />
+            </PaginationLink>
           </PaginationItem>
 
           <PaginationItem>
