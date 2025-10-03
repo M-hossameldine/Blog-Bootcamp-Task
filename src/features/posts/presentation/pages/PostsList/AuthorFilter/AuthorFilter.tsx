@@ -16,13 +16,16 @@ type AuthorFilterProps = {
 
 export const AuthorFilter = ({ authors, onChange }: AuthorFilterProps) => {
   return (
-    <div className="flex items-center gap-1.5 rounded-md cursor-pointer">
+    <div className="flex items-center gap-1.5 rounded-md cursor-pointer h-[50px]">
       <Label htmlFor="author" className="text-base font-normal">
         Author:
       </Label>
 
       <Select defaultValue="all" onValueChange={onChange}>
-        <SelectTrigger id="author" className="w-40 text-base bg-white">
+        <SelectTrigger
+          id="author"
+          className="w-40 !h-[50px] text-base bg-white"
+        >
           <SelectValue placeholder="Author" />
         </SelectTrigger>
         <SelectContent>
