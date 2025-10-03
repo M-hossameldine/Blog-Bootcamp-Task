@@ -88,7 +88,6 @@ const PostsList = () => {
           <div className="flex justify-between gap-10 px-4 py-4.5 bg-black/10 border-b border-black/15">
             <SearchInput
               onChange={searchKeyword => {
-                console.log('SearchInput changed', searchKeyword);
                 setNewSearchKeyword(searchKeyword);
               }}
               placeholder="Search for a post..."

@@ -15,7 +15,7 @@ export const Layout = ({ children }: LayoutProps) => {
       <div className="mx-auto flex h-full max-w-[1200px] flex-col">
         <LayoutHeader />
 
-        <div className="mt-4 overflow-y-auto">{children}</div>
+        <div className="h-full mt-4 overflow-y-auto">{children}</div>
       </div>
     </div>
   );
