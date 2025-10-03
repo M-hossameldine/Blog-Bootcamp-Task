@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useLazyGetPostsQuery } from '@/features/posts/data/remote';
+import { useGetAuthorsQuery } from '@/features/posts/data/remote';
 
-import { Card } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { PostsListHeader } from './PostsListHeader';
+import { AuthorFilter } from './AuthorFilter';
 import { PostListRows } from './PostListRows';
 import { PaginationBar } from './PaginationBar';
 
@@ -15,7 +17,8 @@ const PostsList = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [getPosts, { data: posts }] = useLazyGetPostsQuery();
+  const [getPosts, { data: postsList }] = useLazyGetPostsQuery();
+  const { data: authors } = useGetAuthorsQuery(undefined);
 
   useEffect(() => {
     void getPosts({
@@ -36,6 +39,16 @@ const PostsList = () => {
     });
   };
 
+  const handleAuthorChange = (authorId: string) => {
+    setCurrentPage(1);
+    const isAll = authorId === 'all';
+    void getPosts({
+      perPage: '10',
+      pageNumber: '1',
+      authorId: isAll ? undefined : authorId,
+    });
+  };
+
   const handlePostClick = (post: Post) => {
     void navigate(postsConfig.postDetails.path({ id: post.id.toString() }));
   };
@@ -44,15 +57,21 @@ const PostsList = () => {
     <Card className="h-full w-full overflow-hidden bg-white/35 p-0 backdrop-blur-xs gap-0">
       <PostsListHeader onGoToCreatePost={handleCreatePost} />
 
-      {posts && (
-        <>
-          <PostListRows posts={posts} onPostClick={handlePostClick} />
+      {postsList && (
+        <CardContent className="p-0 overflow-y-auto">
+          <div className="flex justify-between gap-4 px-4 py-4.5 bg-black/10 border-b border-black/15">
+            <AuthorFilter
+              authors={authors ?? []}
+              onChange={handleAuthorChange}
+            />
+          </div>
+          <PostListRows posts={postsList.data} onPostClick={handlePostClick} />
           <PaginationBar
             currentPage={currentPage}
-            totalPages={10}
+            totalPages={postsList.totalPages}
             onPageChange={handlePageChange}
           />
-        </>
+        </CardContent>
       )}
     </Card>
   );

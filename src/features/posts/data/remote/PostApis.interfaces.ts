@@ -1,13 +1,16 @@
-import type { Post } from '../../domain/types';
+import type { Post, Author } from '../../domain/types';
 
 export type PostsRequestResponse = {
   id: number;
   userId: number;
   title: string;
   body: string;
-};
+}[];
 
-export type PostsRequestResult = Post[];
+export type PostsRequestResult = {
+  data: Post[];
+  totalPages: number;
+};
 
 export type PostsRequestQueryParams = {
   pageNumber: string;
@@ -15,3 +18,7 @@ export type PostsRequestQueryParams = {
   authorId?: string;
   searchKeyword?: string;
 };
+
+export type AuthorsRequestResponse = Author[];
+
+export type AuthorsRequestResult = Author[];
