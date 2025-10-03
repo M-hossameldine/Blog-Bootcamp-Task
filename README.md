@@ -46,9 +46,7 @@ npm run preview
 npm test
 ```
 
-## Additional Notes or Improvements
-
-### Technology Stack
+## Technology Stack
 
 - **React 18** with TypeScript
 - **Vite** for fast development and building
@@ -60,13 +58,15 @@ npm test
 - **Lucide React** for icons
 - **Dayjs** for date formatting
 
-### Key Features Implemented
+## Key Features Implemented
 
 - ✅ Dynamic pagination with smart page number display
 - ✅ Real-time search and filtering
 - ✅ Author selection dropdown
 - ✅ Responsive design with modern UI
 - ✅ Type-safe form handling
+
+## Additional Notes or Improvements
 
 ### Future Improvements
 
