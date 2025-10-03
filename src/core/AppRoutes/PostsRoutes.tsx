@@ -14,7 +14,7 @@ const AddPost = lazy(
 export const postsConfig = {
   postsList: {
     route: '/posts',
-    path: (args: { id: string }) => `/posts/${args.id}`,
+    path: () => `/posts`,
     element: <PostList />,
   } satisfies AppRouteConfig<{ id: string }>,
   postDetails: {

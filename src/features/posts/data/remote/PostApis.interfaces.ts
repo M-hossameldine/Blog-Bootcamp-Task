@@ -1,11 +1,7 @@
 import type { Post, Author } from '../../domain/types';
 
-export type PostsRequestResponse = {
-  id: number;
-  userId: number;
-  title: string;
-  body: string;
-}[];
+// * Get Posts List Api Interfaces
+export type PostsRequestResponse = Post[];
 
 export type PostsRequestResult = {
   data: Post[];
@@ -19,6 +15,19 @@ export type PostsRequestQueryParams = {
   searchKeyword?: string;
 };
 
-export type AuthorsRequestResponse = Author[];
-
+// * Get Authors List Api Interfaces
 export type AuthorsRequestResult = Author[];
+
+// * Get Post Details Api Interfaces
+export type PostDetailsRequestResult = Post;
+
+export type PostDetailsRequestQueryParams = {
+  id: string;
+};
+
+// * Get Author Details Api Interfaces
+export type AuthorDetailsRequestResult = Author;
+
+export type AuthorDetailsRequestQueryParams = {
+  id: string;
+};
