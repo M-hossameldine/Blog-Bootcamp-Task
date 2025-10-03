@@ -24,6 +24,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 
+import { NotebookPen, AlertCircle } from 'lucide-react';
+
 const formSchema = z.object({
   title: z.string().min(1, 'Post title is required').trim(),
   body: z.string().min(1, 'Post body is required').trim(),
@@ -49,81 +51,107 @@ export function AddPost() {
   return (
     <Card className="bg-white/60 backdrop-blur-lg p-0 gap-0 text-start overflow-hidden">
       <CardHeader className="px-4 py-4.5 bg-white">
-        <CardTitle className="text-xl font-semibold ">
+        <CardTitle className="flex items-center gap-2.5 text-xl font-semibold ">
+          <NotebookPen className="size-5.5" />
           Create a New Post
         </CardTitle>
       </CardHeader>
 
       <CardContent className="p-6">
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-6 text-start"
-          >
-            {/* Title */}
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-black!">Title</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter post title" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <div className="p-6 bg-white rounded-xl">
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-col gap-11.5 text-start"
+            >
+              <div className="flex flex-col gap-6">
+                {/* Title */}
+                <FormField
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-black!">Title</FormLabel>
+                      <FormControl className="p-4 h-12 border-none bg-black/10">
+                        <Input placeholder="Enter post title" {...field} />
+                      </FormControl>
+                      {form.formState.errors.title && (
+                        <div className="flex items-center gap-1 text-destructive text-sm">
+                          <AlertCircle className="size-4" />
+                          <FormMessage />
+                        </div>
+                      )}
+                    </FormItem>
+                  )}
+                />
 
-            {/* Body */}
-            <FormField
-              control={form.control}
-              name="body"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-black!">Body</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Enter post body"
-                      className="resize-none"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                {/* Body */}
+                <FormField
+                  control={form.control}
+                  name="body"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-black!">Body</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Enter post body"
+                          className="resize-none p-4 h-32 border-none bg-black/10"
+                          {...field}
+                        />
+                      </FormControl>
+                      {form.formState.errors.body && (
+                        <div className="flex items-center gap-1 text-destructive text-sm">
+                          <AlertCircle className="size-4" />
+                          <FormMessage />
+                        </div>
+                      )}
+                    </FormItem>
+                  )}
+                />
 
-            {/* Author */}
-            <FormField
-              control={form.control}
-              name="author"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-black!">Author</FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select Author" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="1">Leanne Graham</SelectItem>
-                      <SelectItem value="2">Ervin Howell</SelectItem>
-                      <SelectItem value="3">Clementine Bauch</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                {/* Author */}
+                <FormField
+                  control={form.control}
+                  name="author"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-black!">Author</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger className="p-4 h-12! border-none bg-black/10 w-full text-base">
+                            <SelectValue placeholder="Select Author" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="1">Leanne Graham</SelectItem>
+                          <SelectItem value="2">Ervin Howell</SelectItem>
+                          <SelectItem value="3">Clementine Bauch</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      {form.formState.errors.author && (
+                        <div className="flex items-center gap-1 text-destructive text-sm">
+                          <AlertCircle className="size-4" />
+                          <FormMessage />
+                        </div>
+                      )}
+                    </FormItem>
+                  )}
+                />
+              </div>
 
-            {/* Submit */}
-            <Button type="submit" className="w-full bg-black text-white">
-              Create Post
-            </Button>
-          </form>
-        </Form>
+              {/* Submit */}
+              <Button
+                type="submit"
+                className="ml-auto max-w-[400px] w-full bg-black text-white cursor-pointer"
+              >
+                Create Post
+              </Button>
+            </form>
+          </Form>
+        </div>
       </CardContent>
     </Card>
   );
