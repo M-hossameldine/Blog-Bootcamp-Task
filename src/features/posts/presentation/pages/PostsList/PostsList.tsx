@@ -21,7 +21,8 @@ const PostsList = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [newSearchKeyword, setNewSearchKeyword] = useState('');
 
-  const [getPosts, { data: postsList }] = useLazyGetPostsQuery();
+  const [getPosts, { data: postsList, isLoading: isPostsLoading }] =
+    useLazyGetPostsQuery();
   const { data: authors } = useGetAuthorsQuery(undefined);
 
   const handleCreatePost = () => {
@@ -103,7 +104,11 @@ const PostsList = () => {
               }}
             />
           </div>
-          <PostListRows posts={postsList.data} onPostClick={handlePostClick} />
+          <PostListRows
+            posts={postsList.data}
+            onPostClick={handlePostClick}
+            isLoading={isPostsLoading}
+          />
           <PaginationBar
             currentPage={currentPage}
             totalPages={postsList.totalPages}
