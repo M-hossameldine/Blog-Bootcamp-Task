@@ -33,7 +33,7 @@ import {
 import { toast } from 'sonner';
 
 import { postsConfig } from '@/core/AppRoutes/PostsRoutes';
-import { NotebookPen, AlertCircle, Check } from 'lucide-react';
+import { NotebookPen, AlertCircle, Check, Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
   title: z.string().min(1, 'Post title is required').trim(),
@@ -44,7 +44,7 @@ const formSchema = z.object({
 type FormSchemaType = z.infer<typeof formSchema>;
 
 export const AddPost = () => {
-  const [addPost] = useAddPostMutation();
+  const [addPost, { isLoading: isAddPostLoading }] = useAddPostMutation();
   const { data: authors } = useGetAuthorsQuery(undefined);
   const [hasError, setHasError] = useState(false);
   const navigate = useNavigate();
@@ -188,11 +188,15 @@ export const AddPost = () => {
                   <p> Internal Server Error</p>
                 </div>
               )}
-              {/* Submit */}
+
               <Button
                 type="submit"
                 className="ml-auto max-w-[400px] w-full bg-black text-white cursor-pointer"
+                disabled={isAddPostLoading}
               >
+                {isAddPostLoading && (
+                  <Loader2 className="size-4.5 mr-2 animate-spin" />
+                )}
                 Create Post
               </Button>
             </form>
