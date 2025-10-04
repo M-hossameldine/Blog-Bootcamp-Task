@@ -38,7 +38,7 @@ const PostDetails = () => {
 
   return (
     <Card className="h-full bg-white/50 backdrop-blur-lg text-start p-0 overflow-hidden grow gap-0">
-      <CardHeader className="flex flex-col justify-end items-start gap-4 text-white bg-gradient-to-t from-[#21609A]/75 to-[#00254A]/75 p-6">
+      <CardHeader className="min-h-[300px] flex flex-col justify-end items-start gap-4 text-white bg-gradient-to-t from-[#21609A]/75 to-[#00254A]/75 p-6">
         <CardAction>
           <Button
             className="gap-1.5 font-semibold rounded-3xl text-black bg-white/75 cursor-pointer"
@@ -63,7 +63,9 @@ const PostDetails = () => {
           </p>
         </div>
       </CardHeader>
-      <CardContent className="p-6 max-w-[600px]">{post?.body}</CardContent>
+      <CardContent className="p-6 max-w-[600px] min-h-[150px]">
+        <p className="text-lg">{post?.body}</p>
+      </CardContent>
     </Card>
   );
 };

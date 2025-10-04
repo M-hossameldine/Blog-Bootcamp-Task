@@ -80,7 +80,7 @@ const PostsList = () => {
   }, [authorId, newSearchKeyword, searchKeyword, handleFiltersChange]);
 
   return (
-    <Card className="h-full w-full overflow-hidden bg-white/35 p-0 backdrop-blur-xs gap-0">
+    <Card className="h-full w-full overflow-hidden bg-white/50 p-0 backdrop-blur-xs gap-0">
       <PostsListHeader onGoToCreatePost={handleCreatePost} />
 
       {postsList && (
