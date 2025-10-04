@@ -1,5 +1,7 @@
 # Blog Task Project
 
+#### Demo site is here: [Demo](https://elevate-post-blog.web.app/)
+
 ## What is the project about
 
 This is a modern React blog application built with Redux Toolkit Query (RTK Query) for data fetching and management. The project features:
@@ -57,6 +59,7 @@ npm test
 - **shadcn/ui** for consistent UI components
 - **Lucide React** for icons
 - **Dayjs** for date formatting
+- **Firebase** for hosting
 
 ## Key Features Implemented
 
@@ -70,6 +73,7 @@ npm test
 
 ### Future Improvements
 
+- Improve loading experience
 - Add user authentication system
 - Implement comment system for posts
 - Add rich text editor for post creation
