@@ -1,3 +1,4 @@
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Toaster } from '@/components/ui/sonner';
 import { LayoutHeader } from './LayoutHeader';
 
@@ -9,7 +10,7 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div
+    <ScrollArea
       className="h-screen overflow-y-auto bg-cover bg-center bg-no-repeat p-4"
       style={{ backgroundImage: `url(${Background})` }}
     >
@@ -20,6 +21,6 @@ export const Layout = ({ children }: LayoutProps) => {
       </div>
 
       <Toaster position="bottom-right" />
-    </div>
+    </ScrollArea>
   );
 };
