@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -31,6 +32,7 @@ import {
 } from '@/components/ui/form';
 import { toast } from 'sonner';
 
+import { postsConfig } from '@/core/AppRoutes/PostsRoutes';
 import { NotebookPen, AlertCircle, Check } from 'lucide-react';
 
 const formSchema = z.object({
@@ -45,6 +47,7 @@ export const AddPost = () => {
   const [addPost] = useAddPostMutation();
   const { data: authors } = useGetAuthorsQuery(undefined);
   const [hasError, setHasError] = useState(false);
+  const navigate = useNavigate();
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -71,6 +74,10 @@ export const AddPost = () => {
           successfully created!
         </p>
       );
+
+      setTimeout(() => {
+        void navigate(postsConfig.postsList.path());
+      }, 500);
     } else {
       setHasError(true);
     }
