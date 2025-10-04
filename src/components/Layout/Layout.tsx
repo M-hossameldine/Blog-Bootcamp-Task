@@ -10,13 +10,13 @@ type LayoutProps = {
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <div
-      className="h-screen bg-cover bg-center bg-no-repeat p-4"
+      className="h-screen overflow-y-auto bg-cover bg-center bg-no-repeat p-4"
       style={{ backgroundImage: `url(${Background})` }}
     >
-      <div className="mx-auto flex h-full max-w-[1200px] flex-col">
+      <div className="mx-auto max-w-[1200px] flex-col">
         <LayoutHeader />
 
-        <div className="h-full mt-4 overflow-y-auto">{children}</div>
+        <div className="mt-4">{children}</div>
       </div>
 
       <Toaster position="bottom-right" />
