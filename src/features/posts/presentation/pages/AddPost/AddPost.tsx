@@ -92,7 +92,7 @@ export const AddPost = () => {
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="p-6">
+      <CardContent className="max-w-[850px] min-h-[150px] p-6">
         <div className="p-6 bg-white rounded-xl">
           <Form {...form}>
             <form
