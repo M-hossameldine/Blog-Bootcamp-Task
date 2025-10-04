@@ -2,10 +2,12 @@
 export const LayoutHeader = () => {
   return (
     <header className="relative flex items-center justify-center rounded-2xl bg-white/50 px-6 py-4 font-semibold text-white backdrop-blur-lg">
-      <p className="absolute top-1/2 left-6 -translate-y-1/2 text-xl">
+      <p className="absolute top-1/2 left-6 -translate-y-1/2 text-[clamp(14px,2vw,20px)]">
         Elevate
       </p>
-      <h1 className="mx-auto text-2xl">Frontend Advanced Bootcamp Task</h1>
+      <h1 className="mx-auto text-[clamp(1rem,2vw,24px)]">
+        Frontend Advanced Bootcamp Task
+      </h1>
     </header>
   );
 };
