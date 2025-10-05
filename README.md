@@ -61,6 +61,72 @@ npm test
 - **Dayjs** for date formatting
 - **Firebase** for hosting
 
+## Project Architecture
+
+This project follows **Clean Architecture** principles, organizing code into distinct layers for better maintainability, testability, and separation of concerns.
+
+### Folder Structure
+
+```
+src/
+├── app/                     # Redux configuration
+│   ├── api.ts               # RTK Query API setup
+│   ├── store.ts             # Redux store configuration
+│   └── hooks.ts             # Global Redux hooks
+├── components/              # Shared UI components
+│   ├── ui/                  # shadcn/ui components
+│   ├── DataDisplay/
+│   ├── DataEntry/
+│   └── Layout/
+├── core/                    # Core application logic
+│   ├── AppLayout/
+│   ├── AppRoutes/
+│   └── AppRoutesProvider/
+├── features/                # Feature modules (Clean Architecture)
+│   └── posts/               # Posts feature module
+|       ├── domain/          # Domain layer (Business entities & types)
+│       │   └── types/       # Business entities & type
+│       ├── data/            # Data layer
+│       │   ├── local/       # Local data sources (Redux Store + Local Storage)
+│       │   └── remote/      # Remote API calls (RTK Query)
+│       └── presentation/    # Presentation layer
+│           ├── components/  # Feature-specific components
+│           └── pages/       # Page components
+```
+
+### Clean Architecture Layers
+
+Each feature module (like `posts`) is organized into three main layers:
+
+#### 1. **Domain Layer** (`domain/`)
+
+- Contains business logic and entities
+- Defines core types and interfaces
+- Independent of external frameworks
+- Examples: `Post.ts`, `Author.ts`
+
+#### 2. **Data Layer** (`data/`)
+
+- Handles data sources and external API calls
+- Implements data access patterns
+- Contains API interfaces and implementations
+- Examples: `PostsApis.ts`, `PostApis.interfaces.ts`
+
+#### 3. **Presentation Layer** (`presentation/`)
+
+- Contains UI components and pages
+- Handles user interactions and state management
+- Depends on domain and data layers
+- Examples: `PostsList.tsx`, `AddPost.tsx`, `PostDetails.tsx`
+
+### Benefits of This Architecture
+
+- **Separation of Concerns**: Each layer has a specific responsibility
+- **Testability**: Easy to unit test each layer independently
+- **Maintainability**: Changes in one layer don't affect others
+- **Scalability**: Easy to add new features following the same pattern
+- **Reusability**: Domain logic can be reused across different presentations
+
 ## Key Features Implemented
 
 - ✅ Dynamic pagination with smart page number display
