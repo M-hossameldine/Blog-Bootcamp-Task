@@ -1,6 +1,6 @@
 # Blog Task Project
 
-#### Demo site is here: [Demo](https://elevate-post-blog.web.app/)
+#### Demo site is here: [Elevate Post Blog](https://elevate-post-blog.web.app/)
 
 ## What is the project about
 
