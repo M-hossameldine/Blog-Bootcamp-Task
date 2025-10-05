@@ -17,8 +17,8 @@ This is a modern React blog application built with Redux Toolkit Query (RTK Quer
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd Blog-Task
+git clone <repository-url> <project-name>
+cd <project-name>
 
 # Install all dependencies
 npm install
@@ -135,7 +135,7 @@ Each feature module (like `posts`) is organized into three main layers:
 - ✅ Responsive design with modern UI
 - ✅ Type-safe form handling
 
-## Additional Notes or Improvements
+## Additional Notes And Improvements
 
 ### Future Improvements
 
